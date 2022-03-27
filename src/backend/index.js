@@ -72,7 +72,7 @@ const { request } = require('express');
 /*
 
  /**
- * Function that sends to the client the list of all the measures of the device in the database in response to a GET request.
+ * Function that sends to the client the list of the log of activations of the electrovalves in response to a get request.
  *  
  * @param req: object submit by client
  * @param res: response object from server.
@@ -88,65 +88,55 @@ const { request } = require('express');
        })
    }); 
 
- /**
- * Function that sends to the client the list of all the measures of the device in the database in response to a GET request.
+/**
+ * Function that sends to the client the list of the log of activations of one selected electrovalve in response to a get request.
  *  
  * @param req: object submit by client
  * @param res: response object from server.
  */
 
-  app.get('/Log', function(req, res, next) {
+ app.get('/LogId', function(req, res, next) {
     //Devices from the database
+        console.log(req.body);
+        requestLocal=(JSON.parse( JSON.stringify(req.body)));
+        console.log(requestLocal.id);
+        if(requestLocal.id=== 0){res.send("error, id cant be 0");}
        
-       connection.query('SELECT *  FROM Log_Riegos ', function(error,result, fields){
-        //   console.log(result);    
+       connection.query(`SELECT *  FROM Log_Riegos WHERE electrovalvulaId=${requestLocal.id} `, function(error,result, fields){
+           console.log(result);    
            res.send(result).status(200);
            return;    
        })
-   }); 
-   
-   
-/*
+       //res.send("ok");
+   });    
 
-app.get('/devices/', function(req, res, next) {
+
+//Put method for change electrovalve state
+/**
+ * Function that saves the change of state of a  electrovalve in the log table. 
+ * @params :id - device id
+ * 
+ */
+ app.put('/devices/', function(req, res, next) {
     
-
-   
-   //response with Device hardcode here
-   /* devices = [
-        { 
-            'id': 1, 
-            'name': 'Lampara 1', 
-            'description': 'Luz living', 
-            'state': 0, 
-            'type': 1, 
-        },
-        { 
-            'id': 2, 
-            'name': 'Ventilador 1', 
-            'description': 'Ventilador Habitacion', 
-            'state': 1, 
-            'type': 2, 
-        },
-    ]
-    res.send(JSON.stringify(devices)).status(200);*/
-
-    //response with Devices from a device file
-    /*
-    let devices=require('./datos.json');
-    res.send(devices).status(200);
-    */
-   
+    requestLocal=(JSON.parse(req.body));
     
-    //Devices from the database
-/*    
-    connection.query('SELECT *  FROM Devices ', function(error,result, fields){
-     //   console.log(result);    
-        res.send(result).status(200);
-        return;    
-    })
+    let result=0;
+    let sql = `UPDATE Devices SET state=${requestLocal.status} WHERE id=${requestLocal.id}`;
+        
+        //inserting device to database
+    connection.query(sql, function(error,result){
+            if (error) throw error;
+     //       console.log("device updated: " + result.affectedRows);        
+    });
+     
+    //send response to frontend
+    res.send("Item status Updated").status(200);
+    res.end();
 });
-*///
+
+
+
 app.listen(PORT, function(req, res) {
     
     console.log("NodeJS API running correctly");
