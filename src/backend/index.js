@@ -86,7 +86,26 @@ const { request } = require('express');
            res.send(result).status(200);
            return;    
        })
-   });  
+   }); 
+
+ /**
+ * Function that sends to the client the list of all the measures of the device in the database in response to a GET request.
+ *  
+ * @param req: object submit by client
+ * @param res: response object from server.
+ */
+
+  app.get('/Log', function(req, res, next) {
+    //Devices from the database
+       
+       connection.query('SELECT *  FROM Log_Riegos ', function(error,result, fields){
+        //   console.log(result);    
+           res.send(result).status(200);
+           return;    
+       })
+   }); 
+   
+   
 /*
 
 app.get('/devices/', function(req, res, next) {
