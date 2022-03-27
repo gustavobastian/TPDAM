@@ -40,6 +40,7 @@ services:
         volumes:
             -                    ./src/backend:/home/node/app/src
             -                    ./src/frontend:/home/node/app/static
+            -                    ./src/frontend2:/home/node/app/ionic
 
         networks:
             -                    app-fullstack-net
@@ -47,7 +48,7 @@ services:
             -                    mysql-admin
         ports: 
             -                    "8000:3000"
-        command:                 bash -c " nodemon /home/node/app/src/index.js"
+        command:              bash -c "cd /home/app/ionic"&& "npm install" && "ionic serve" && " nodemon /home/node/app/src/index.js"
 
 networks:
     app-fullstack-net:
