@@ -37,22 +37,6 @@ routerMedicion.post('/agregar', function(req, res) {
 
 
 
- /**
- * Function that sends to the client the list of all the measures of the device in the database in response to a GET request.
- *  
- * @param req: object submit by client
- * @param res: response object from server.
- */
-
-  routerMedicion.get('/all', function(req, res, next) {
-    //Devices from the database
-       console.log("here");
-       pool.query('SELECT *  FROM Mediciones ', function(error,result, fields){
-        //   console.log(result);    
-           res.send(result).status(200);
-           return;    
-       })
-   });  
 
 
 module.exports = routerMedicion;

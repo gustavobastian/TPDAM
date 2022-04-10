@@ -13,6 +13,10 @@ var routerDisp = require('./routes/dispositivo');
 var routerMedicion = require('./routes/medicion');
 //ruteo electrovalve
 var routerElectrovalve = require('./routes/electrovalve');
+//ruteo log Riegos
+var routerLogRiegos = require('./routes/logriegos');
+
+
 
 // to parse application/json
 app.use(express.json()); 
@@ -30,95 +34,12 @@ app.use('/api/dispositivo', routerDisp);
 
 app.use('/api/medicion', routerMedicion);
 
-app.use('/api/electrovalve', routerElectrovalve);
+app.use('/api/electrovalvula', routerElectrovalve);
+
+app.use('/api/logRiegos', routerLogRiegos);
 
 
 
- /**
- * Function that sends to the client the list of all the measures of the device in the database in response to a GET request.
- *  
- * @param req: object submit by client
- * @param res: response object from server.
- */
-/*
-  app.get('/Mesures', function(req, res, next) {
-    //Devices from the database
-       
-       connection.query('SELECT *  FROM Mediciones ', function(error,result, fields){
-        //   console.log(result);    
-           res.send(result).status(200);
-           return;    
-       })
-   });  
-/*
-
- /**
- * Function that sends to the client the list of the log of activations of the electrovalves in response to a get request.
- *  
- * @param req: object submit by client
- * @param res: response object from server.
- */
-/*
-  app.get('/Log', function(req, res, next) {
-    //Devices from the database
-       
-       connection.query('SELECT *  FROM Log_Riegos ', function(error,result, fields){
-        //   console.log(result);    
-           res.send(result).status(200);
-           return;    
-       })
-   }); 
-
-/**
- * Function that sends to the client the list of the log of activations of one selected electrovalve in response to a get request.
- *  
- * @param req: object submit by client
- * @param res: response object from server.
- */
-/*
- app.get('/LogId', function(req, res, next) {
-    //Devices from the database
-        console.log(req.body);
-        requestLocal=(JSON.parse( JSON.stringify(req.body)));
-        console.log(requestLocal.id);
-        if(requestLocal.id=== 0){res.send("error, id cant be 0");}
-        if(isNaN(requestLocal.id)){res.send("error, id is not a number");}
-       
-       connection.query(`SELECT *  FROM Log_Riegos WHERE electrovalvulaId=${requestLocal.id} `, function(error,result, fields){
-           console.log(result);    
-           res.send(result).status(200);
-           return;    
-       })
-       //res.send("ok");
-   }); 
-/**
- * Function that sends to the client the last of  log of activations of one selected electrovalve in response to a get request.
- *  
- * @param req: object submit by client
- * @param res: response object from server.
- */
-/*
- app.get('/LastLogId', function(req, res, next) {
-    //Devices from the database
-        console.log(req.body);
-        requestLocal=(JSON.parse( JSON.stringify(req.body)));
-        console.log(requestLocal.id);
-        if(requestLocal.id=== 0){res.send("error, id cant be 0");}
-        if(isNaN(requestLocal.id)){res.send("error, id is not a number");}
-       
-       connection.query(`
-                SELECT *  
-                FROM Log_Riegos 
-                WHERE electrovalvulaId=${requestLocal.id}
-                ORDER BY logRiegoId Desc
-                LIMIT 1                
-             `, function(error,result, fields){
-           console.log(result);    
-           res.send(result).status(200);
-           return;    
-       })
-       //res.send("ok");
-   }); 
 /**
  * Function that sends to the client the list of the measures of one selected device in response to a get request.
  *  
