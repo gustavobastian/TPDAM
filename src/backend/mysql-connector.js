@@ -27,7 +27,7 @@ var mysql = require('mysql');
 //=======[ Main module code ]==================================================
 
 
-
+/*
 connection.connect(function(err) {
     if (err) {
         console.error('Error while connect to DB: ' + err.stack);        
@@ -36,7 +36,7 @@ connection.connect(function(err) {
    else{ 
        console.log('Connected to DB under thread ID: ' + connection.threadId);retry=1;
     }
-});
+});*/
 
 module.exports = connection;
 
