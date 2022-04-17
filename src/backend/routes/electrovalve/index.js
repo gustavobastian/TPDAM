@@ -20,6 +20,24 @@ var pool = require('../../mysql');
        })
    });
 
+
+/**
+ * Function that sends to the client the electrovalve in the database in response to a GET request.
+ *  
+ * @param req: object submit by client
+ * @param res: response object from server.
+ */
+
+ routerElectrovalve.get('/:idElectrovalve', function(req, res, next) {
+    //Devices from the database
+    requestLocal=req.params.idElectrovalve;
+       pool.query('SELECT *  FROM Electrovalvulas WHERE electrovalvulaId=?',requestLocal, function(error,result, fields){
+        //   console.log(result);    
+           res.send(result).status(200);
+           return;    
+       })
+   });   
+
    //Put method for change electrovalve state
 /**
  * Function that saves the change of state of a  electrovalve in the log table. 
