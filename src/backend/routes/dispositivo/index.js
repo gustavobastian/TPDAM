@@ -10,6 +10,7 @@ var pool = require('../../mysql');
  */
 
 routerDispositivo.get('/', function(req, res) {
+    console.log("recibido all");
     pool.query('Select * from Dispositivos', function(err, result, fields) {
         if (err) {
             res.send(err).status(400);
@@ -21,6 +22,7 @@ routerDispositivo.get('/', function(req, res) {
 
 //Espera recibir por parámetro un id de dispositivo y devuelve su informacion
 routerDispositivo.get('/:idDispositivo', function(req, res) {
+    console.log("recibido one");
     pool.query('Select * from Dispositivos where dispositivoId=?', [req.params.idDispositivo], function(err, result, fields) {
         if (err) {
             res.send(err).status(400);

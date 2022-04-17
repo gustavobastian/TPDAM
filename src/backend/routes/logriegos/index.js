@@ -32,7 +32,7 @@ var pool = require('../../mysql');
  */
 
  routerLogRiegos.get('/:idElectrovalve', function(req, res) {        
-    
+        console.log("here");
        pool.query('SELECT * FROM Log_Riegos  WHERE electrovalvulaId=? order by fecha desc',[req.params.idElectrovalve], function(err,result, fields){           
                 if (err) {
                     res.send(err).status(400);
