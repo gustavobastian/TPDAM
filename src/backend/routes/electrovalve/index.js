@@ -49,7 +49,7 @@ var pool = require('../../mysql');
     
     requestLocal=req.params.idElectrovalve;
     
-   
+   console.log("cambiando ev:"+requestLocal);
     let result=0;
     let actualState=0;
     let results="0";
@@ -58,10 +58,11 @@ var pool = require('../../mysql');
 
     pool.query('SELECT * FROM Log_Riegos  WHERE electrovalvulaId=? order by fecha desc',[req.params.idElectrovalve], async function(err,result, fields){                   
         actual_value=result[0];
+        console.log(result[0]);
       
     try{ 
         pool.query('INSERT INTO Log_Riegos (apertura,fecha,electrovalvulaId) values (?, NOW(),?)',[([actual_value.apertura]==0)? 1 : 0,req.params.idElectrovalve],await function(error,result, fields){
-              // console.log(result);
+               console.log(result);
                 if(error){
                         throw(error);
                     }                
