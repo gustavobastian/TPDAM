@@ -51,9 +51,6 @@ var pool = require('../../mysql');
             
         
         }catch(error){console.log(error);}
-
-
-
         //;} 
     });
 
