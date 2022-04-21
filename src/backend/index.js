@@ -26,8 +26,6 @@ app.use(express.json());
 app.use(cors(corsOptions));
 
 
-// to serve static files
-app.use(express.static('/home/node/app/static/'));
 // to parse received data
 var bodyParser = require('body-parser');
 const { request } = require('express');

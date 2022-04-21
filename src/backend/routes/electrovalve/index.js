@@ -67,8 +67,6 @@ var pool = require('../../mysql');
                         throw(error);
                     }                
                 }) 
-            
-        
         }catch(error){console.log(error);}
         //;} 
     });
@@ -80,6 +78,22 @@ var pool = require('../../mysql');
     res.end();
 });
 
+/**
+ * Function that sends to the client the last measure correspondint to that in the database in response to a GET request.
+ *  
+ * @param req: object submit by client
+ * @param res: response object from server.
+ */
+
+ routerElectrovalve.get('/:idElectrovalve/medicion', function(req, res, next) {
+    //Devices from the database
+    requestLocal=req.params.idElectrovalve;
+       pool.query('SELECT fecha, valor, dispositivoId FROM Electrovalvulas as El INNER JOIN Dispositivos as Disp USING(electrovalvulaId) INNER JOIN Mediciones as Med USING (dispositivoId) WHERE electrovalvulaId= ? ORDER BY fecha DESC Limit 1;',requestLocal, function(error,result, fields){
+        //   console.log(result);    
+           res.send(result).status(200);
+           return;    
+       })
+   });   
 
 
 
