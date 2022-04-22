@@ -12,7 +12,7 @@ var pool = require('../../mysql');
   routerLogRiegos.get('/', function(req, res, next) {
     //Devices from the database
        console.log("here");
-       pool.query('SELECT *  FROM Log_Riegos ', function(error,result, fields){
+     /*  pool.query('SELECT *  FROM Log_Riegos ', function(error,result, fields){
         //   console.log(result);    
              if (err) {
                res.send(err).status(400);
@@ -20,8 +20,9 @@ var pool = require('../../mysql');
             }
            res.send(result).status(200);
            return;    
-       })
-   }); 
+       })*/
+       res.send("error");
+     }); 
 
 
 /**

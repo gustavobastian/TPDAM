@@ -49,7 +49,7 @@ var pool = require('../../mysql');
     
     requestLocal=req.params.idElectrovalve;
     
-   console.log("cambiando ev:"+requestLocal);
+ //  console.log("cambiando ev:"+requestLocal);
     let result=0;
     let actualState=0;
     let results="0";
