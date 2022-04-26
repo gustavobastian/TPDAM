@@ -45,7 +45,7 @@ var pool = require('../../mysql');
  * @res :value - value to set
  */
 
- routerElectrovalve.put('/cambio/:idElectrovalve', async function(req, res, next) {
+ routerElectrovalve.put('/:idElectrovalve', async function(req, res, next) {
     
     requestLocal=req.params.idElectrovalve;
     

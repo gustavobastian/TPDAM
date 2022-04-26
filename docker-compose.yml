@@ -30,8 +30,7 @@ services:
         image:                   abassi/nodejs-server:10.0-dev
         volumes:
             -                    ./src/backend:/home/node/app/src
-            -                    ./src/frontend:/home/node/app/static
-            -                    ./src/frontend2:/home/node/app/ionic
+            
 
         networks:
             -                    app-fullstack-net
