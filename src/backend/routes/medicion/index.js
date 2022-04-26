@@ -27,14 +27,17 @@ routerMedicion.get('/:idDispositivo/todas', function(req, res) {
 //Espera recibir por parámetro un id de dispositivo y un valor de medición y lo inserta en base de datos.
 routerMedicion.post('/', function(req, res) {
     console.log("guardo Medicion");
-    console.log(req.body[0]);
-    pool.query('Insert into Mediciones (fecha,valor,dispositivoId) values (now(),?,?)', [ req.body.valor, req.body.dispositivoId], function(err, result, fields) {
+    received=(req.body);
+    valor=received[0].valor;
+    dispositivoId=received[2].dispositivoId;
+    
+    pool.query('Insert into Mediciones (fecha,valor,dispositivoId) values (now(),?,?)', [ valor, dispositivoId], function(err, result, fields) {
         if (err) {
 			console.log(result);
             res.send(err).status(400);
             return;
         }
-        res.send(result);
+        res.send("Medicion guardada");
     });
 });
 

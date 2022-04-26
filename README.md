@@ -84,16 +84,22 @@ Distintos enpoints que responden a get (y se pueden consultar desde un navegador
 
 ## Escritura en la base de datos
 ### Escritura de mediciones
-Al activarse una electroválvula(cerrarse el paso)), el front end envía una peticion de grabación de información de la medicion del sensor en la base de datos. Se utiliza el metodo Post a la direccion http://localhost:8000/api/medicion/agregar  incorporando en el body del Post los valores del sensor y de la medición. El servidor actualiza el tiempo al momento en que 
-se recibió el pedido.
+Al activarse una electroválvula(cerrarse el paso)), el front end envía una peticion de grabación de información de la medicion del sensor en la base de datos. Se utiliza el metodo Post a la direccion http://localhost:8000/api/medicion/  incorporando en el body del Post los valores del sensor y de la medición. El servidor actualiza el tiempo al momento en que se recibió el pedido.
+Ejemplo de estructura de body para el post de grabación de la medición:
+[{"valor":"12"},{"fecha":"2020-11-26T21:20:41.000Z"},{"dispositivoId":"2"}]
+La respuesta del server es(dentro del body):
+Medicion guardada
+
 
 ### Escritura en log de riegos
-Realizando un put en  http://localhost:8000/api/electrovalvula/cambio/:idElectrovalve se escribe en log riegos la alteración del estado de la electrovalvula correspondiente.
+Realizando un put en  http://localhost:8000/api/electrovalvula/:idElectrovalve se escribe en log riegos la alteración del estado de la electrovalvula correspondiente.
+Se recibe como respuesta:
+Item status Updated
 ## Autores 👥
 
 * **[Gustavo Bastian](https://github.com/gustavobastian)**: Adaptación del proyecto.
 
-Las colaboraciones originales fueron realizadas por:
+Las colaboraciones originales de la aplicación base (https://github.com/gotoiot/app-fullstack-base) fueron realizadas por:
 
 * **[Agustin Bassi](https://github.com/agustinBassi)**: Ideación, puesta en marcha y mantenimiento del proyecto.
 * **[Ernesto Giggliotti](https://github.com/ernesto-g)**: Creación inicial del frontend, elección de Material Design.
