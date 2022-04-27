@@ -85,8 +85,13 @@ Distintos enpoints que responden a get (y se pueden consultar desde un navegador
 ## Escritura en la base de datos
 ### Escritura de mediciones
 Al activarse una electroválvula(cerrarse el paso)), el front end envía una peticion de grabación de información de la medicion del sensor en la base de datos. Se utiliza el metodo Post a la direccion http://localhost:8000/api/medicion/  incorporando en el body del Post los valores del sensor y de la medición. El servidor actualiza el tiempo al momento en que se recibió el pedido.
-Ejemplo de estructura de body para el post de grabación de la medición:
-[{"valor":"12"},{"fecha":"2020-11-26T21:20:41.000Z"},{"dispositivoId":"2"}]
+Ejemplo de estructura de body para el post de grabación de la medición(solo se tiene en cuenta el valor y el dispositivoId):
+
+[{"valor":"12"},
+{"fecha":"2020-11-26T21:20:41.000Z"},
+{"dispositivoId":"2"}
+]
+
 La respuesta del server es(dentro del body):
 Medicion guardada
 
